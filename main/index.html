@@ -152,11 +152,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 
 .selection-menu-option-selected {
     background-color: var(--selection-option-selected-colour);
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "StoryScript" */
-/* Used to set up all normal, non-SugarCube dependant JS */
-console.log("StoryScript started");
-importScripts(["js/main.js", "js/ui.js"])
-/* twine-user-script #2: "main.js" */
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "main.js" */
 window.game = window.game || {}
 window.game.alias = window.game.alias || {}
 window.game.alias.setup = function (engine) {
@@ -196,7 +192,7 @@ window.game.setupData.difficulty = 'medium'; // default
 window.game.setupMenu.difficultySelected = function (selectedDifficulty) {
     window.game.setupData.difficulty = selectedDifficulty;
 }
-/* twine-user-script #3: "ui.js" */
+/* twine-user-script #2: "ui.js" */
 window.ui = window.ui || {}
 
 /* Selection Menus */
@@ -207,7 +203,11 @@ window.ui.selectionMenu.select = function (selectedOption) {
         options[i].classList.remove("selection-menu-option-selected");
     }
     selectedOption.classList.add("selection-menu-option-selected");
-}</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">/* Used to set up all SugarCube-dependants*/
+}
+/* twine-user-script #3: "StoryScript" */
+/* Used to set up all normal, non-SugarCube dependant JS */
+console.log("StoryScript started");
+importScripts(["js/main.js", "js/ui.js"])</script><tw-passagedata pid="1" name="StoryInit" tags="" position="100,100" size="100,100">/* Used to set up all SugarCube-dependants*/
 &lt;&lt;script&gt;&gt;
   console.log(&quot;StoryInit started&quot;);
   window.game.alias.setup(Engine);
