@@ -99,15 +99,16 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
 	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="4" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "passagebar.css" */
+@import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
+
 /* Bar styling - Start */
 #topbar {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
-	background-color: #333;
-	border-top: 1px solid #444;
-	box-shadow: 0 0 10px 0 #333;
+	background-color: var(--primary-background);
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
 	z-index: 40;
 }
 #bottombar {
@@ -115,8 +116,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	left: 0;
 	bottom: 0;
 	width: 100%;
-	background-color: #333;
-	border-top: 1px solid #444;
+	background-color: var(--primary-background);
 	box-shadow: 0 0 10px 0 #333;
 	z-index: 40;
 }
@@ -129,6 +129,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	justify-content: space-between;
 }
 .bbtext {
+	color: var(--primary-text);
 	text-align: center;
 	max-width: 18em;
 	margin: 0 0.5em;
@@ -151,7 +152,71 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 	}
 }
 /* Bar styling - End */
-/* twine-user-stylesheet #2: "style.css" */
+/* twine-user-stylesheet #2: "rounds.css" */
+:root {
+    /* Primary Colors */
+    --primary-background: #F5EFE6;  /* Background color for the main content area */
+    --primary-text: #362E27;        /* Text color for the main content area */
+    --primary-accent: #D7A98C;      /* Accent color for buttons, links, and highlights */ /* Actually used for button highlight */
+
+    /* Secondary Colors */
+    --secondary-background: #D9C3B0;  /* Background color for secondary sections */
+    --secondary-text: #685C55;        /* Text color for secondary sections */
+    --secondary-accent: #CFAE97;      /* Accent color for secondary buttons and highlights */
+
+    /* Neutral Colors */
+    --neutral-background: #FFFFFF;  /* Background color for cards, panels, and modals */
+    --neutral-text: #444444;        /* Text color for cards, panels, and modals */
+    --neutral-border: #CCCCCC;      /* Border color for cards, panels, and modals */
+}
+
+body {
+    background-color: var(--primary-background);
+    color: var(--primary-text);
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    padding: 40px;
+}
+
+#left-section {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+#right-section {
+    flex: 1;
+    display: flex;
+    padding: 20px;
+    display: none;
+}
+
+.option {
+    background-color: var(--secondary-background);
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.option:hover {
+    /* transform: translateY(-10px); */
+    transform: scale(1.05);
+    background-color: var(--neutral-background);
+}
+
+.option-text {
+    font-weight: bold;
+    font-size: 24px;
+}
+/* twine-user-stylesheet #3: "style.css" */
 /* General */
 :root {
     --selection-option-unselected-colour: #753b11;
@@ -179,11 +244,12 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     width: 200px;
     padding: 10px;
     margin: 10px;
-    background-color: var(--selection-option-unselected-colour);
+    border-radius: 5px;
+    background-color: var(--secondary-accent);
 }
 
 .main-menu-option:hover {
-    background-color: var(--selection-option-hovered-colour);
+    background-color: var(--primary-accent);
 }
 
 /* Selection Menus */
@@ -197,11 +263,12 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     width: 200px;
     padding: 5px;
     margin: 5px;
-    background-color: var(--selection-option-unselected-colour);
+    border-radius: 5px;
+    background-color: var(--secondary-accent);
 }
 
 .selection-menu-option:hover {
-    background-color: var(--selection-option-hovered-colour);
+    background-color: var(--primary-accent);
 }
 
 .selection-menu-option-selected {
@@ -215,12 +282,13 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
     width: 100px;
     padding: 5px;
     margin: 10px;
-    background-color: var(--selection-option-unselected-colour);
+    border-radius: 5px;
+    background-color: var(--secondary-accent);
     text-align: center;
 }
 
 .back-button:hover {
-    background-color: var(--selection-option-hovered-colour);
+    background-color: var(--primary-accent);
 }
 
 /* Error field for input validation */
@@ -237,6 +305,60 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 /* General structuring */
 .center {
     text-align: center;
+}
+
+/*** SugarCube overrides ***/
+/* UI Bar & Dialogs */
+#ui-bar {
+    color: var(--primary-text);
+    background-color: var(--primary-background);
+}
+
+#menu ul {
+    border: none;
+}
+
+#menu li:not(:first-child) {
+    border: none;
+    padding-top: 5px;
+}
+
+#menu li a {
+    background-color: var(--secondary-accent);
+    color: var(--primary-text);
+    border: none;
+    border-radius: 5px;
+}
+
+#menu li a:hover {
+    background-color: var(--primary-accent);
+}
+
+#ui-bar-history [id|=history], #ui-bar-toggle, #ui-dialog-body button {
+    color: var(--primary-text);
+    background-color: var(--secondary-accent);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#ui-bar-history [id|=history]:hover, #ui-bar-toggle:hover, #ui-dialog-body button:hover {
+    background-color: var(--primary-accent);
+    color: var(--primary-text);
+}
+
+#ui-bar-history [id|=history]:disabled, #ui-dialog-body button:disabled {
+    color: #999;
+}
+
+/* Other SugarCube UI */
+#ui-dialog-titlebar, #ui-dialog-body {
+    color: var(--primary-text);
+    background-color: var(--primary-background);
+}
+
+body {
+    font-family: 'Changa', sans-serif;
 }</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "controller.js" */
 /* Main Menu */
 window.c = window.c || {}
@@ -386,7 +508,35 @@ importScripts("js/init.js", ["js/control/controller.js", "js/game/setup.js", "js
             }
         });
     &lt;&lt;/script&gt;&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Game Round" tags="tbar" position="225,100" size="100,100">Blah</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="350,100" size="100,100">/* Used to set up all SugarCube-dependants*/
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="2" name="Game Round" tags="tbar" position="225,100" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;div id=&quot;container&quot;&gt;
+        &lt;div id=&quot;left-section&quot;&gt;
+            &lt;div class=&quot;option noselect&quot;&gt;
+            &lt;div class=&quot;option-text&quot;&gt;Resources&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Resource 1&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Resource 2&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;option noselect&quot;&gt;
+            &lt;div class=&quot;option-text&quot;&gt;Local activities&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Activity 1&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Activity 2&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;option noselect&quot;&gt;
+            &lt;div class=&quot;option-text&quot;&gt;Scouting missions&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Mission 1&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Mission 2&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div id=&quot;right-section&quot;&gt;
+            &lt;div class=&quot;option noselect&quot; style=&quot;flex-grow: 1;&quot;&gt;
+            &lt;div class=&quot;option-text&quot;&gt;Additional Option&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Sub-option 1&lt;/div&gt;
+            &lt;div class=&quot;sub-option&quot;&gt;Sub-option 2&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div style=&quot;flex-grow: 2;&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="StoryInit" tags="" position="350,100" size="100,100">/* Used to set up all SugarCube-dependants*/
 &lt;&lt;script&gt;&gt;
   console.log(&quot;StoryInit started&quot;);
   window.c.alias.setup(Engine, State);
