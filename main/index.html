@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="5" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "1-main.css" */
+	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="5" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "_main.css" */
 @import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
 
 /* General */
@@ -239,6 +239,10 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 #ui-dialog-titlebar, #ui-dialog-body {
     color: var(--primary-text);
     background-color: var(--primary-background);
+}
+
+#ui-dialog-body ul.buttons li button {
+    width: 70px;
 }
 
 body {
@@ -448,123 +452,9 @@ body.slideWin {
 	cursor: pointer;
 	line-height: 14px;
 	z-index: 101;
-}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "controller.js" */
-/* Main Menu */
-window.c = window.c || {}
-window.c.mainMenu = window.c.mainMenu || {}
-window.c.mainMenu.startGame = function () {
-    window.ui.passage.goTo("Game Setup 1 Difficulty");
-};
+}</style><script role="script" id="twine-user-script" type="text/twine-javascript">/* Used to set up all normal, non-SugarCube dependant JS */
+console.log("StoryScript started");
 
-window.c.mainMenu.continueGame = function () {
-    console.log("Todo");
-};
-window.c.mainMenu.loadGame = function () {
-    console.log("Todo");
-};
-window.c.mainMenu.openSettings = function () {
-    console.log("Todo");
-};
-window.c.mainMenu.openAchievements = function () {
-    console.log("Todo");
-};
-window.c.mainMenu.openExtras = function () {
-    console.log("Todo");
-};
-window.c.mainMenu.quitGame = function () {
-    console.log("Todo");
-};
-
-/* Game start selection menus */
-window.c.gameSetup = window.c.gameSetup || {}
-window.c.gameSetup.submitDifficulty = function (difficultyStr) {
-    window.game.gameSetup.difficultySelected(difficultyStr);
-    window.ui.passage.goTo("Game Setup 2 Name Ship");
-}
-
-window.c.gameSetup.submitShipName = function (parentMenuElement, inputShipName) {
-    var error = window.game.gameSetup.shipNameSelected(inputShipName);
-    if(error) {
-        window.ui.inputMenu.findAndSetErrorField(parentMenuElement, error);
-    } else {
-        window.ui.passage.goTo("Game Setup 3 Finalise");
-    }
-}
-
-window.c.gameSetup.back = function () {
-    window.ui.passage.back();
-}
-
-/* Final setup before game start */
-window.c.gameSetup.startGame = function () {
-    window.game.gameSetup.initialiseGame();
-
-    window.ui.passage.goTo("Story Begin");
-}
-
-/*** Rounds ***/
-window.c.rounds = window.c.rounds || {}
-window.c.rounds.loadMain = function () {
-    window.ui.passage.goTo("Game Round");
-}
-/* twine-user-script #2: "references.js" */
-window.game = window.game || {}
-console.log("References");
-window.game.references = {};
-window.game.references.resourcesDataDictionary = {
-    "water": {
-        "display-name": "Fresh water (litres)",
-        "description": "Available consumable water, used for consumption by crew, hygiene and medicine, and in desperate cases, heat management.",
-        "type": "human-consumables",
-        "subtype": "main"
-    },
-    "food": {
-        "display-name": "Consumable food (meals)",
-        "description": "Available food portioned out into standard meals. A crew member normally consumes two meals per day.",
-        "type": "human-consumables",
-        "subtype": "main"
-    },
-    "structural-raw-materials": {
-        "display-name": "Structural Raw Materials",
-        "description": "Used in manufacturing and repair of structural elements, such as ship bulkheads and buildings.",
-        "type": "manufacturing-and-repair",
-        "subtype": "raw-materials"
-    }
-};
-window.game.references.resourceTypeNameMapping = {
-    "human-consumables": "Human Consumables",
-    "manufacturing-and-repair": "Manufacturing & Repair",
-    "raw-materials": "Raw materials",
-    "main": "Main"
-};
-/* twine-user-script #3: "setup.js" */
-/* Game Setup */
-window.game = window.game || {}
-window.game.gameSetup = window.game.gameSetup || {}
-
-window.game.gameSetup.difficultySelected = function (selectedDifficulty) {
-    window.c.alias.State.variables.setupData = window.c.alias.State.variables.setupData || {}
-    window.c.alias.State.variables.setupData.difficulty = selectedDifficulty;
-}
-
-window.game.gameSetup.shipNameSelected = function (inputShipName) {
-    if(window.utils.isBlank(inputShipName)) {
-        return "Ship name is blank";
-    }
-    window.c.alias.State.variables.setupData = window.c.alias.State.variables.setupData || {}
-    window.c.alias.State.variables.setupData.shipName = inputShipName;
-}
-
-window.game.gameSetup.initialiseGame = function () {
-    window.c.alias.State.variables.gameData = {};
-    
-    window.c.alias.State.variables.gameData.resources = {
-        "water": 10,
-        "food": 12,
-        "structural-raw-materials": 12
-    };
-}
-/* twine-user-script #4: "init.js" */
 /* Controller. Provides the link between the Twee and logic and ui scripts */
 window.c = window.c || {}
 
@@ -575,188 +465,13 @@ window.c.alias.setup = function (engine, state) {
     window.c.alias.State = state;
 }
 
-/* Game data */
-console.log("Init");
 window.game = window.game || {}
-/* twine-user-script #5: "menus.js" */
-window.ui = window.ui || {}
 
-/* Selection menus */
-window.ui.selectionMenu = window.ui.selectionMenu || {}
-window.ui.selectionMenu.select = function (optionMenuSelected) {
-    var options = optionMenuSelected.parentElement.children;
-    for(var i = 0; i < options.length; i++ ) {
-        options[i].classList.remove("selection-menu-option-selected");
-    }
-    optionMenuSelected.classList.add("selection-menu-option-selected");
-}
-
-/* Input menus */
-window.ui.inputMenu = window.ui.inputMenu || {}
-window.ui.inputMenu.findAndSetErrorField = function (parentMenuElement, error) {
-    var errorField = parentMenuElement.getElementsByClassName("error-field")[0];
-    errorField.innerHTML = error;
-    errorField.classList.add("error-field-displayed");
-}
-/* twine-user-script #6: "rounds-display.js" */
-window.ui = window.ui || {}
-window.ui.rounds = window.ui.rounds || {}
-
-window.ui.rounds.displayResources = function () {
-    /* Get the resources container element */
-    var resourcesContainer = document.getElementById('window-resources-container');
-            
-    /* Group resources by type and subtype */
-    var resourceGroups = {};
-    for(var resource in window.c.alias.State.variables.gameData.resources) {
-        var type = window.game.references.resourcesDataDictionary[resource].type;
-        var subtype = window.game.references.resourcesDataDictionary[resource].subtype;
-        
-        if (!resourceGroups[type]) {
-            resourceGroups[type] = {};
-        }
-        
-        if (!resourceGroups[type][subtype]) {
-            resourceGroups[type][subtype] = [];
-        }
-        
-        resourceGroups[type][subtype].push(resource);
-    }
-
-    /* Function to generate the HTML for resources */
-    function generateResourceHTML(resource) {
-        var resourceDictionary = window.game.references.resourcesDataDictionary[resource];
-        var html = '<div id="window-resources-entry-' + resource + '" class="window-entry">';
-        html += '<span class="resource-name">' + resourceDictionary["display-name"] + ':</span>';
-        html += '<span class="resource-count"> ' + window.c.alias.State.variables.gameData.resources[resource] + '</span><br/>';
-        html += '<span class="resource-description">' + resourceDictionary["description"] + '</span>';
-        html += '</div>';
-        return html;
-    }
-
-    /* Function to generate the HTML for resource subtypes */
-    function generateResourceSubtypeHTML(type, subtype, useFriendlySubtypeName) {
-        var html = '<div id="window-resources-subsection-' + subtype + '" class="window-subsection"><span class="window-subsection-text"> - '
-                    + useFriendlySubtypeName + '</span>';
-        resourceGroups[type][subtype].forEach(function (resource) {
-            html += generateResourceHTML(resource);
-        });
-        html += '</div>';
-        return html;
-    }
-
-    /* Function to generate the HTML for resource types */
-    function generateResourceTypeHTML(type, userFriendlyTypeName) {
-        var html = '<div id="window-resources-section-' + type + '" class="window-section"><span class="window-section-text">'
-                    + userFriendlyTypeName + '</span>';
-        for (var subtype in resourceGroups[type]) {
-            var userFriendlySubtypeName = window.game.references.resourceTypeNameMapping[subtype];
-            html += generateResourceSubtypeHTML(type, subtype, userFriendlySubtypeName);
-        }
-        html += '</div>';
-        return html;
-    }
-
-    /* Generate and append the HTML for resource types and subtypes */
-    for (var type in resourceGroups) {
-        var userFriendlyTypeName = window.game.references.resourceTypeNameMapping[type];
-        var allHtml = generateResourceTypeHTML(type, userFriendlyTypeName);
-        resourcesContainer.innerHTML += allHtml;
-    }
-}
-/* twine-user-script #7: "slidewin.js" */
-/* SlideWin v1.0 - Start */
-// Add the SlideWin window to the page.
-var el = document.createElement("div");
-el.id = "slideWin";
-el.setAttribute("role", "main");
-el.setAttribute("aria-labelledby", "slideTitle");
-document.body.appendChild(el);
-$(el).css({ transform: "translateX(-101vw)", "stroke-width": "101px" });
-// Allow the ESC key to hide the SlideWin window.
-$(document).on("keyup", function (event) {
-	if (($("#slideWin").css("stroke-width") !== "101px") && ((event.key === "Escape") || (event.key === "Esc"))) {
-		window.slideWin("hide");
-		return false;
-	}
-});
-// The slideWin() function
-window.ui = window.ui || {}
-window.ui.slideWin = window.ui.slideWin || {}
-window.ui.slideWin.slideWinHandler = [];
-window.slideWin = function (dir) {
-	if ($("#slideWin").css("stroke-width") !== "101px") {  // Hide slide window.
-		window.ui.slideWin.slideWinPassage = undefined;
-		$("#slideWin").attr("tabindex", null);
-		$("#slideWin").animate(
-			{ "stroke-width": "101px" },  // Hack to get animation to work.
-			{	step: function (now, fx) { $(this).css("transform", "translateX(" + (-now) + "vw)"); },
-				complete: function () {
-					$("#slideWin").empty();
-					if (dir !== "hide") {
-						window.slideWin(dir);
-					}
-				},
-				duration: 500
-			},
-			"swing"
-		);
-		var handler;  // Remove event handlers.
-		while (window.ui.slideWin.slideWinHandler.length) {
-			handler = window.ui.slideWin.slideWinHandler.shift();
-			$(handler.selector).off(handler.event, "#slideWin", handler.function);
-		}
-		$("body").removeClass("slideWin");
-	} else {  // Show slide window.
-		window.ui.slideWin.slideWinPassage = dir;
-		$("#slideWin").empty().attr("tabindex", 0).wiki('<button class="ur game-button" onclick="slideWin(\'hide\')" tabindex="0" aria-label="Close Slide Window">Close</button><div id="slideWinContent" tabindex="0"><<include "' + dir + '">></div>');
-		$("#slideWin p").each(function () {  // Remove any empty <p> elements.
-			if ($(this).text().trim() === "") {
-				$(this).remove();
-			} else {  // Strip <p> elements from around their contents.
-				$(this).children().unwrap();
-			}
-		});
-		$("#slideWin").delay(1).animate(  // Delay prevents animation stutter.
-			{ "stroke-width": "0" },  // Hack to get animation to work.
-			{	step: function (now, fx) { $(this).css("transform", "translateX(" + (-now) + "vw)"); },
-				complete: function () { $("body").addClass("slideWin"); },
-				duration: 500
-			},
-			"swing"
-		).focus();
-	}
-};
-/* SlideWin - End */
-/* twine-user-script #8: "sugarcube.js" */
-/* SugarCube-specific functionality */
-window.ui = window.ui || {}
-
-/* Passage movement */
-window.ui.passage = window.ui.passage || {}
-window.ui.passage.goTo = function (passageName) {
-    window.c.alias.Engine.play(passageName);
-}
-
-window.ui.passage.back = function () {
-    window.c.alias.Engine.backward();
-}
-/* twine-user-script #9: "general.js" */
-window.utils = window.utils || {}
-
-window.utils.isBlank = function (str) {
-    return (!str || /^\s*$/.test(str));
-}
-/* twine-user-script #10: "StoryScript" */
-/* Used to set up all normal, non-SugarCube dependant JS */
-console.log("StoryScript started");
-//importScripts("js/init.js", ["js/control/**", "js/game/**", "js/ui/**"])
-importScripts("js/init.js",
-  ["js/control/controller.js",
+importScripts(["js/control/controller.js",
   "js/game/setup.js", "js/game/references.js",
   "js/ui/menus.js", "js/ui/sugarcube.js", "js/ui/slidewin.js", "js/ui/rounds-display.js",
   "js/utils/general.js"]
-)</script><tw-passagedata pid="1" name="PassageHeader" tags="" position="100,100" size="100,100">&lt;&lt;nobr&gt;&gt;
+);</script><tw-passagedata pid="1" name="PassageHeader" tags="" position="100,100" size="100,100">&lt;&lt;nobr&gt;&gt;
     &lt;&lt;if tags().includes(&quot;tbar&quot;)&gt;&gt;
         &lt;div id=&quot;topbar&quot;&gt;
             &lt;div id=&quot;bbblock&quot;&gt;
