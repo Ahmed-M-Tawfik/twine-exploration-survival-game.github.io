@@ -98,7 +98,7 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="5" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "_main.css" */
+	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="6" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* twine-user-stylesheet #1: "_main.css" */
 @import url('https://fonts.googleapis.com/css2?family=Changa&display=swap');
 
 /* General */
@@ -494,12 +494,12 @@ importScripts(["js/control/controller.js",
     &lt;h2 id=&quot;game-round-title&quot; class=&quot;game-round-title&quot;&gt;Crash site&lt;/h2&gt;
     &lt;div id=&quot;game-round-container&quot;&gt;
         &lt;div id=&quot;game-round-left-section&quot;&gt;
-            &lt;div class=&quot;game-round-option noselect&quot; onclick=&quot;slideWin(&#39;SlideWin Resources&#39;)&quot;&gt;
+            &lt;div class=&quot;game-round-option noselect&quot; onclick=&quot;slideWin(&#39;Window Resources&#39;)&quot;&gt;
                 &lt;div id=&quot;resources-option&quot; class=&quot;game-round-option-text&quot;&gt;Resources&lt;/div&gt;
                 &lt;div id=&quot;resources-suboption-1&quot; class=&quot;game-round-sub-option&quot;&gt;Water is a necessity; we need to make sure we have enough in this desert&lt;/div&gt;
                 &lt;div id=&quot;resources-suboption-2&quot; class=&quot;game-round-sub-option&quot;&gt;Fuel is limited and more is needed to keep the power going and the heat down&lt;/div&gt;
             &lt;/div&gt;
-            &lt;div class=&quot;game-round-option noselect&quot;  onclick=&quot;window.ui.passage.goTo(&#39;SlideWin Activities&#39;)&quot;&gt;
+            &lt;div class=&quot;game-round-option noselect&quot;  onclick=&quot;slideWin(&#39;Window Activities&#39;)&quot;&gt;
                 &lt;div id=&quot;activities-option&quot; class=&quot;game-round-option-text&quot;&gt;Local activities&lt;/div&gt;
                 &lt;div id=&quot;activities-suboption-1&quot; class=&quot;game-round-sub-option&quot;&gt;Our medical facility is minimal. We need first aid materials and clean water&lt;/div&gt;
                 &lt;div id=&quot;activities-suboption-2&quot; class=&quot;game-round-sub-option&quot;&gt;We have to insulate the ship and make it airtight to keep the heat out&lt;/div&gt;
@@ -519,18 +519,25 @@ importScripts(["js/control/controller.js",
             &lt;div style=&quot;flex-grow: 2;&quot;&gt;&lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="SlideWin Resources" tags="noreturn" position="350,100" size="100,100">&lt;&lt;nobr&gt;&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="3" name="Window Resources" tags="noreturn" position="350,100" size="100,100">&lt;&lt;nobr&gt;&gt;
     &lt;h2 id=&quot;window-title&quot; class=&quot;window-title&quot;&gt;Resources&lt;/h2&gt;
     &lt;div id=&quot;window-resources-container&quot; class=&quot;window-container&quot;&gt;
     &lt;/div&gt; &lt;!-- End window-container --&gt;
     &lt;script&gt;    
         window.ui.rounds.displayResources();
     &lt;/script&gt;
-&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="StoryInit" tags="" position="475,100" size="100,100">/* Used to set up all SugarCube-dependants*/
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="4" name="Window Activities" tags="noreturn" position="475,100" size="100,100">&lt;&lt;nobr&gt;&gt;
+    &lt;h2 id=&quot;window-title&quot; class=&quot;window-title&quot;&gt;Local activities&lt;/h2&gt;
+    &lt;div id=&quot;window-activities-container&quot; class=&quot;window-container&quot;&gt;
+    &lt;/div&gt; &lt;!-- End window-container --&gt;
+    &lt;script&gt;
+        window.ui.rounds.displayActivities();
+    &lt;/script&gt;
+&lt;&lt;/nobr&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="StoryInit" tags="" position="600,100" size="100,100">/* Used to set up all SugarCube-dependants*/
 &lt;&lt;script&gt;&gt;
   console.log(&quot;StoryInit started&quot;);
   window.c.alias.setup(Engine, State);
-&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="5" name="Start" tags="" position="350,325" size="100,100">&lt;div id=&quot;main-menu&quot;&gt;
+&lt;&lt;/script&gt;&gt;</tw-passagedata><tw-passagedata pid="6" name="Start" tags="" position="350,325" size="100,100">&lt;div id=&quot;main-menu&quot;&gt;
   &lt;h1&gt;Codename: Exploration Survival Game&lt;/h1&gt;
   &lt;div id=&quot;main-menu-options&quot;&gt;
     &lt;div class=&quot;main-menu-option noselect&quot; onclick=&quot;window.c.mainMenu.startGame()&quot;&gt;Start Game&lt;/div&gt;
@@ -541,7 +548,7 @@ importScripts(["js/control/controller.js",
     &lt;div class=&quot;main-menu-option noselect&quot; onclick=&quot;window.c.mainMenu.openExtras()&quot;&gt;Extras&lt;/div&gt;
     &lt;div class=&quot;main-menu-option noselect&quot; onclick=&quot;window.c.mainMenu.quitGame()&quot;&gt;Quit&lt;/div&gt;
   &lt;/div&gt;
-&lt;/div&gt;</tw-passagedata><tw-passagedata pid="6" name="Game Setup 1 Difficulty" tags="" position="575,225" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
+&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Game Setup 1 Difficulty" tags="" position="575,225" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
   &lt;h2&gt;Select difficulty&lt;/h2&gt;
   &lt;div id=&quot;selection-menu-options&quot;&gt;
     &lt;div class=&quot;selection-menu-option noselect&quot; onclick=&quot;window.c.gameSetup.submitDifficulty(&#39;Classic&#39;)&quot;&gt;Classic&lt;/div&gt;
@@ -549,7 +556,7 @@ importScripts(["js/control/controller.js",
   &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div class=&quot;back-button noselect&quot; onclick=&quot;window.c.gameSetup.back()&quot;&gt;Go back&lt;/div&gt;</tw-passagedata><tw-passagedata pid="7" name="Game Setup 2 Name Ship" tags="" position="850,100" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
+&lt;div class=&quot;back-button noselect&quot; onclick=&quot;window.c.gameSetup.back()&quot;&gt;Go back&lt;/div&gt;</tw-passagedata><tw-passagedata pid="8" name="Game Setup 2 Name Ship" tags="" position="975,100" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
   &lt;label for=&quot;shipNameInput&quot;&gt;Enter the name of your ship&lt;/label&gt;
   &lt;input type=&quot;text&quot; id=&quot;shipNameInput&quot; name=&quot;shipNameInput&quot;/&gt;
   &lt;span class=&quot;error-field&quot;/&gt;
@@ -558,7 +565,7 @@ importScripts(["js/control/controller.js",
 
 &lt;div class=&quot;back-button noselect&quot; onclick=&quot;window.c.gameSetup.back()&quot;&gt;Go back&lt;/div&gt;
 
-/* TODO: Add ship type/mission */</tw-passagedata><tw-passagedata pid="8" name="Game Setup 3 Finalise" tags="" position="975,100" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
+/* TODO: Add ship type/mission */</tw-passagedata><tw-passagedata pid="9" name="Game Setup 3 Finalise" tags="" position="1100,100" size="100,100">&lt;div id=&quot;selection-menu&quot;&gt;
   To summarise, you have picked the &lt;span id=&quot;difficulty&quot;/&gt; difficulty, and your ship is named &lt;span id=&quot;shipName&quot;/&gt;.
   &lt;div class=&quot;selection-menu-option noselect&quot; onclick=&quot;window.c.gameSetup.startGame()&quot;&gt;Proceed&lt;/div&gt;
 &lt;/div&gt;
@@ -570,7 +577,7 @@ importScripts(["js/control/controller.js",
     document.getElementById(&quot;difficulty&quot;).innerHTML = State.variables.setupData.difficulty;
     document.getElementById(&quot;shipName&quot;).innerHTML = State.variables.setupData.shipName;
   &lt;&lt;/script&gt;&gt;
-&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="9" name="Story Begin" tags="" position="1100,100" size="100,100">Your ship, the &lt;span class=&quot;textInjector&quot; id=&quot;shipName&quot;/&gt;, has crashed in the middle of a desert.
+&lt;&lt;/done&gt;&gt;</tw-passagedata><tw-passagedata pid="10" name="Story Begin" tags="" position="1225,100" size="100,100">Your ship, the &lt;span class=&quot;textInjector&quot; id=&quot;shipName&quot;/&gt;, has crashed in the middle of a desert.
 
 Looking at the outside view, this desert does not appear too different to other deserts you&#39;re familiar with. You look at the outside temperature indicator, then to the time-of-day window that calculates the local day-night cycle, and you take back the thought. It isn&#39;t even midday wherever you are, and yet the temperature was unbearably high.
 
