@@ -98,23 +98,78 @@ var LZString={_keyStr:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* Used to set up all normal, non-SugarCube dependant JS */
-console.log("StoryScript started");
-
-/* Controller. Provides the link between the Twee and logic and ui scripts */
-window.c = window.c || {}
+	<!-- UUID://3343DA80-8D0C-4485-8292-8C41EBB11ADB// --><tw-storydata name="Codename: Exploration Survival Game" startnode="1" creator="Tweego" creator-version="2.1.1" ifid="3343DA80-8D0C-4485-8292-8C41EBB11ADB" zoom="1" format="SugarCube" format-version="2.36.1" options="" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">/* twine-user-script #1: "init.js" */
+console.log("Loaded init.js");
 
 /* Aliases for access to SugarCube functions/variables, as they aren't available normally in pure js */
 window.s = window.s || {}
 window.s.setup = function (engine, state) {
     window.s.Engine = engine;
     window.s.State = state;
-    window.s.v = state.variables;
+}
+/* twine-user-script #2: "controller.js" */
+console.log("Loaded controller.js");
+/* Controller. Provides the link between the Twee and logic and ui scripts */
+window.c = window.c || {}
+
+window.c.setupGame = function() {
+    // set up the ship var
+    window.s.State.variables.ship = {};
+
+    // add starting resources
+    window.s.State.variables.ship.resources = window.g.generateStartingResources();
+        
+    window.ui.passage.goTo('Game');
 }
 
-importScripts(
-  ["js/control/controller.js", "js/game/game.js", "js/ui/sugarcube.js"]
-);</script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;div id=&quot;activities&quot;&gt;
+window.c.doActivity = function () {
+    window.g.doActivity();
+    window.ui.passage.goTo('Game');
+};
+/* twine-user-script #3: "game.js" */
+console.log("Loaded game.js");
+window.g = window.g || {}
+
+window.g.generateStartingResources = function() {
+    return {
+        "human_consumable_food": {
+            "name": "Food",
+            "count": 10
+        },
+        "human_consumable_water": {
+            "name": "Water",
+            "count": 12
+        }
+    };
+}
+
+window.g.addToShipResources = function(resourceName, amount) {
+    window.s.State.variables.ship.resources[resourceName].count += amount;
+}
+
+window.g.doActivity = function() {
+    window.g.addToShipResources("human_consumable_food", 5);
+    window.g.addToShipResources("human_consumable_water", 10);
+}
+/* twine-user-script #4: "sugarcube.js" */
+console.log("Loaded sugarcube.js");
+/* SugarCube-specific functionality */
+window.ui = window.ui || {}
+
+/* Passage movement */
+window.ui.passage = window.ui.passage || {}
+window.ui.passage.goTo = function (passageName) {
+    window.s.Engine.play(passageName);
+}
+
+window.ui.passage.back = function () {
+    window.s.Engine.backward();
+}
+
+/* Repaint without persisting data - browser refresh will wipe changes, up to initial passage load */
+window.ui.passage.refresh = function () {
+    window.s.Engine.show();
+}</script><tw-passagedata pid="1" name="Start" tags="" position="100,100" size="100,100">&lt;div id=&quot;activities&quot;&gt;
   &lt;div class=&quot;activity-option noselect&quot; onclick=&quot;window.c.setupGame()&quot;&gt;Do activity&lt;/div&gt;
 &lt;/div&gt;</tw-passagedata><tw-passagedata pid="2" name="Game" tags="" position="225,100" size="100,100">&lt;div id=&quot;main-menu&quot;&gt;
   &lt;h1&gt;Codename: Exploration Survival Game&lt;/h1&gt;
@@ -125,7 +180,7 @@ importScripts(
 &lt;/div&gt;
 &lt;script&gt;
   var resourceContainer = document.getElementById(&#39;resource&#39;);
-  var shipResources = window.s.v.ship.resources;
+  var shipResources = window.s.State.variables.ship.resources;
   for (var resourceItemName in shipResources) {
     resourceContainer.innerHTML += &#39;&lt;div class=&quot;resource-entry&quot;&gt;&#39; + shipResources[resourceItemName].name 
             + &#39;: &#39; + shipResources[resourceItemName].count + &#39;&lt;/div&gt;&#39;;
